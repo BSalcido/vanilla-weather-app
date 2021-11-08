@@ -1,0 +1,123 @@
+.all {
+  background-color: #bdd2b6;
+  font-family: "Raleway", sans-serif;
+}
+.weatherContainer,
+.forecastContainer {
+  /* max-width: 750px; */
+  background-color: #ffffff;
+  border: 1px solid #a2b29f;
+  border-radius: 8px;
+  margin: 15px auto;
+  padding: 40px 30px;
+}
+.searchEngine {
+  margin: 30px auto;
+}
+input.search-input {
+  background: #d3e4cd;
+  border: 1px solid #d3e4cd;
+}
+input.btn {
+  background: #a2b29f;
+  border: #adc2a9;
+}
+input.btn:hover {
+  background: #798777;
+  border: #99a799;
+}
+input.btn:focus {
+  background: #f8ede3;
+  color: #798777;
+}
+.cityName {
+  font-size: 75px;
+  font-weight: 600;
+  margin: 10px auto;
+}
+.currentConditions {
+  margin: 10px auto;
+}
+.dateInfo {
+  color: rgb(102, 102, 102);
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.currentImage {
+  width: 150px;
+}
+.weatherCommentary {
+  font-size: 20px;
+  margin-top: 0;
+  padding-top: 0;
+}
+.temperatureDisplay {
+  margin: 0;
+}
+.temperatureNow {
+  font-size: 120px;
+  font-weight: 300;
+}
+.units {
+  font-size: 20px;
+}
+.unitLink {
+  color: #a2b29f;
+  text-decoration: none;
+}
+.unitLink:hover {
+  color: #798777;
+}
+/* .unitLink:active {
+  color: #798777;
+  background-color: #a2b29f;
+  box-shadow: #798777;
+} */
+
+.realFeel {
+  font-style: italic;
+  color: rgb(102, 102, 102);
+  margin-bottom: 10px;
+}
+.highAndLowInfo {
+  font-size: 20px;
+  margin: 20px auto;
+  font-weight: 500;
+}
+.minMaxTemp {
+  font-size: 23px;
+}
+.otherConditions {
+  font-weight: light;
+}
+
+.forecastContainer {
+  text-align: center;
+}
+.dayName {
+  font-size: 18px;
+  margin: 5px auto;
+}
+
+.dayForecastImage {
+  width: 70px;
+  margin: 5px auto;
+}
+.forecastDay {
+  font-size: 18px;
+  margin-top: 10px;
+}
+footer {
+  text-align: center;
+  color: #798777;
+  font-size: small;
+  margin: 30px auto;
+}
+#footer-link {
+  color: #445f41;
+  font-weight: bold;
+  text-decoration: none;
+}
+#footer-link:hover {
+  color: #6fb662;
+}
