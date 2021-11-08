@@ -13,9 +13,132 @@
     />
     <title>Weather App</title>
   </head>
-  <body>
-    <div>
-      <h1>Hello World</h1>
+  <body class="all">
+    <div class="container">
+      <div class="weatherContainer">
+        <div class="row searchEngine">
+          <div class="col-9">
+            <input
+              type="search"
+              placeholder="Enter a city..."
+              class="form-control search-input"
+            />
+          </div>
+          <div class="col-3">
+            <input type="submit" class="btn btn-primary" value:"Search">
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col">
+            <h1 class="cityName">Copenhagen</h1>
+            <div class="dateInfo">
+              <span class="day">Monday </span><span class="date">08/11</span>
+            </div>
+            <div class="lastUpdated">
+              Last updated: <span class="lastUpdatedTime">10:00 AM</span>
+            </div>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
+              alt="Current Weather Image"
+              class="currentImage"
+            />
+            <div class="weatherCommentary">Cloudy</div>
+          </div>
+          <div class="col">
+            <h2 class="temperatureDisplay">
+              <span class="temperatureNow">10 </span
+              ><span class="units"
+                ><a href="" class="celsius">°C</a> |
+                <a href="" class="fahrenheit">°F</a></span
+              >
+            </h2>
+            <div class="realFeel">
+              Feels like <span class="realFeelTemperature">7</span>°
+            </div>
+            <div class="highAndLowTemps">
+              <span class="maxTemp">12</span>°/<span class="minTemp">8</span>°
+            </div>
+            <div class="otherConditions">
+              Humidity: <span class="humidity">86</span>% Wind:
+              <span class="wind">25</span>km/h
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="forecastContainer">
+        <div class="row">
+          <div class="col dayHeader">
+            <div class="dayName">Tuesday</div>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png"
+              alt="First forecast"
+              id="day1Img"
+            />
+            <div class="forecasteDay row justify-content-between">
+              <div class="col"><span class="maxForecast">10</span>°</div>
+              <div class="col"><span class="minForecast">6</span>°</div>
+            </div>
+          </div>
+          <div class="col dayHeader">
+            <div class="dayName">Wednesday</div>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/48/rain_light.png"
+              alt="First forecast"
+              id="day1Img"
+            />
+            <div class="forecasteDay row justify-content-between">
+              <div class="col"><span class="maxForecast">10</span>°</div>
+              <div class="col"><span class="minForecast">6</span>°</div>
+            </div>
+          </div>
+          <div class="col dayHeader">
+            <div class="dayName">Thursday</div>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/48/rain_light.png"
+              alt="First forecast"
+              id="day1Img"
+            />
+            <div class="forecasteDay row justify-content-between">
+              <div class="col"><span class="maxForecast">10</span>°</div>
+              <div class="col"><span class="minForecast">6</span>°</div>
+            </div>
+          </div>
+          <div class="col dayHeader">
+            <div class="dayName">Friday</div>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png"
+              alt="First forecast"
+              id="day1Img"
+            />
+            <div class="forecasteDay row justify-content-between">
+              <div class="col"><span class="maxForecast">10</span>°</div>
+              <div class="col"><span class="minForecast">6</span>°</div>
+            </div>
+          </div>
+          <div class="col dayHeader">
+            <div class="dayName">Saturday</div>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
+              alt="First forecast"
+              id="day1Img"
+            />
+            <div class="forecasteDay row justify-content-between">
+              <div class="col"><span class="maxForecast">10</span>°</div>
+              <div class="col"><span class="minForecast">6</span>°</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <footer>
+        This project was coded by Brisa Salcido and is
+        <a
+          href="https://github.com/BSalcido/vanilla-weather-app"
+          target="_blank"
+          >open-sourced on GitHub</a
+        >.
+      </footer>
     </div>
     <script src="src/app.js"></script>
   </body>
