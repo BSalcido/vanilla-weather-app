@@ -52,11 +52,16 @@ input.btn:focus {
   margin-top: 0;
   padding-top: 0;
 }
+
+.weatherCommentary::first-letter {
+  text-transform: capitalize;
+}
+
 .temperatureDisplay {
   margin: 0;
 }
 .temperatureNow {
-  font-size: 120px;
+  font-size: 80px;
   font-weight: 300;
 }
 .units {
@@ -92,7 +97,7 @@ input.btn:focus {
   font-weight: light;
 }
 
-.forecastContainer {
+/* .forecastContainer {
   text-align: center;
 }
 .dayName {
@@ -107,7 +112,7 @@ input.btn:focus {
 .forecastDay {
   font-size: 18px;
   margin-top: 10px;
-}
+} */
 footer {
   text-align: center;
   color: #97c3c5;
