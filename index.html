@@ -21,18 +21,22 @@
   <body class="all">
     <div class="container">
       <div class="weatherContainer">
-        <div class="row searchEngine">
-          <div class="col">
-            <input
-              type="search"
-              placeholder="Enter a city..."
-              class="form-control search-input"
-            />
+        <form id="search-form">
+          <div class="row searchEngine">
+            <div class="col">
+              <input
+                type="search"
+                placeholder="Enter a city..."
+                class="form-control search-input"
+                id="search-input"
+                autocomplete="off"
+              />
+            </div>
+            <div class="col-auto">
+              <input type="submit" class="btn btn-primary" value:"Search">
+            </div>
           </div>
-          <div class="col-auto">
-            <input type="submit" class="btn btn-primary" value:"Search">
-          </div>
-        </div>
+        </form>
         <hr />
         <h1 class="cityName" id="city"></h1>
         <div class="dateInfo" id="date"></div>
