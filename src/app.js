@@ -81,13 +81,16 @@ function search(city, units) {
   axios.get(apiUrl).then(displayTemperature);
 }
 
-let cityInputElement = "New York";
-
 // Search engine
 function handleSubmit(event, units) {
   cityInputElement = document.querySelector("#search-input").value;
   event.preventDefault();
   units = "metric";
+
+  // Reset links style
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+
   search(cityInputElement, units);
 }
 
@@ -95,7 +98,6 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
 // Units conversion
-let units = "metric";
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
@@ -112,6 +114,9 @@ function displayCelsiusTemperature(event) {
   celsiusLink.classList.add("active");
   search(cityInputElement, units);
 }
+
+let cityInputElement = "New York";
+let units = "metric";
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
