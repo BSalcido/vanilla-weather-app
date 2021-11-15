@@ -1,9 +1,9 @@
 let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
-let cityName = "New york";
+let cityName = "Copenhagen";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
 
 function formatDate(timestamp) {
-  let date = new Date(timestamp);
+  let date = timestamp;
 
   let weekDays = [
     "Sunday",
@@ -37,6 +37,8 @@ function formatDate(timestamp) {
   let timeString = date.toTimeString();
   let time = timeString.slice(0, 5);
 
+  console.log(date);
+
   return `${day}, ${month} ${dateNum} <br> Last updated: ${time}`;
 }
 
@@ -69,12 +71,10 @@ function displayTemperature(response) {
 
   // Gets the date
   let dateElement = document.querySelector("#date");
-  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  dateElement.innerHTML = formatDate(new Date(response.data.dt * 1000));
 
   console.log(response.data);
   console.log(Date(response.data.dt * 1000));
 }
-
-console.log(apiUrl);
 
 axios.get(apiUrl).then(displayTemperature);
