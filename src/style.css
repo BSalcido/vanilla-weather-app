@@ -44,9 +44,7 @@ input.btn:focus {
   font-size: 18px;
   margin-bottom: 10px;
 }
-.currentImage {
-  width: 150px;
-}
+
 .weatherCommentary {
   font-size: 20px;
   margin-top: 0;

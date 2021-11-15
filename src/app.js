@@ -3,7 +3,7 @@ let cityName = "Copenhagen";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
 
 function formatDate(timestamp) {
-  let date = timestamp;
+  let date = new Date(timestamp);
 
   let weekDays = [
     "Sunday",
@@ -37,8 +37,6 @@ function formatDate(timestamp) {
   let timeString = date.toTimeString();
   let time = timeString.slice(0, 5);
 
-  console.log(date);
-
   return `${day}, ${month} ${dateNum} <br> Last updated: ${time}`;
 }
 
@@ -69,12 +67,14 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind-speed");
   windElement.innerHTML = Math.round(response.data.wind.speed);
 
+  // Gets weather icon
+  let iconElement = document.querySelector("#current-weather-icon");
+  let iconID = response.data.weather[0].icon;
+  iconElement.src = `http://openweathermap.org/img/wn/${iconID}@2x.png`;
+
   // Gets the date
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(new Date(response.data.dt * 1000));
-
-  console.log(response.data);
-  console.log(Date(response.data.dt * 1000));
 }
 
 axios.get(apiUrl).then(displayTemperature);
