@@ -73,21 +73,50 @@ function displayTemperature(response) {
   dateElement.innerHTML = formatDate(new Date(response.data.dt * 1000));
 }
 
-function search(city) {
+function search(city, units) {
   let cityName = city;
   let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+  let unit = units;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
+let cityInputElement = "New York";
+
 // Search engine
-function handleSubmit(event) {
+function handleSubmit(event, units) {
+  cityInputElement = document.querySelector("#search-input").value;
   event.preventDefault();
-  let cityInputElement = document.querySelector("#search-input").value;
-  search(cityInputElement);
+  units = "metric";
+  search(cityInputElement, units);
 }
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-search("New York");
+// Units conversion
+let units = "metric";
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  units = "imperial";
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  search(cityInputElement, units);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  units = "metric";
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  search(cityInputElement, units);
+}
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+search(cityInputElement, units);

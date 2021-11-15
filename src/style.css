@@ -65,18 +65,24 @@ input.btn:focus {
 .units {
   font-size: 20px;
 }
+
+.currentConditions .active {
+  color: #222831;
+  cursor: default;
+}
 .unitLink {
-  color: #00adb5;
   text-decoration: none;
+  color: #00adb5;
 }
 .unitLink:hover {
+  text-decoration: none;
   color: #08d9d6;
 }
-/* .unitLink:active {
-  color: #798777;
-  background-color: #a2b29f;
-  box-shadow: #798777;
-} */
+
+.currentConditions .active:hover {
+  color: #222831;
+  cursor: default;
+}
 
 .realFeel {
   font-style: italic;
