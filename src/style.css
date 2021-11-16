@@ -101,7 +101,7 @@ input.btn:focus {
   font-weight: light;
 }
 
-/* .forecastContainer {
+.forecastContainer {
   text-align: center;
 }
 .dayName {
@@ -116,7 +116,7 @@ input.btn:focus {
 .forecastDay {
   font-size: 18px;
   margin-top: 10px;
-} */
+}
 footer {
   text-align: center;
   color: #97c3c5;

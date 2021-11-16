@@ -36,6 +36,38 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${dateNum} <br> Last updated: ${time}`;
 }
 
+function displayWeekForecast() {
+  let weekForecastElement = document.querySelector("#forecast-container");
+
+  let weekForecastHTML = `<div class="row">`;
+
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  days.forEach(function (day) {
+    weekForecastHTML =
+      weekForecastHTML +
+      `
+      <div class="col">
+            <div class="dayName">${day}</div>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png"
+              alt="Forecast icon"
+              id="day-forecast-img"
+              class="dayForecastImage"
+            />
+            <div class="forecastDay">
+              <span class="maxForecast">10</span>°/<span class="minForecast"
+                >6</span
+              >°
+            </div>
+          </div>
+        `;
+  });
+
+  weekForecastHTML = weekForecastHTML + `</div>`;
+
+  weekForecastElement.innerHTML = weekForecastHTML;
+}
+
 function displayTemperature(response) {
   // Gets city header
   let cityElement = document.querySelector("#city");
@@ -125,3 +157,4 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 search(cityInputElement, units);
+displayWeekForecast();
