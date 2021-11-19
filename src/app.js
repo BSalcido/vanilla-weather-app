@@ -1,3 +1,6 @@
+let cityInputElement = "New York";
+let units = "metric";
+
 function formatDate(timestamp) {
   let date = new Date(timestamp);
 
@@ -92,7 +95,7 @@ function displayWeekForecast(response) {
   weekForecastElement.innerHTML = weekForecastHTML;
 }
 
-function displayTemperature(response) {
+function displayTemperature(response, newUnits) {
   // Gets city header
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
@@ -128,19 +131,22 @@ function displayTemperature(response) {
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(new Date(response.data.dt * 1000));
 
-  let windUnitsElement = document.querySelector("#wind-units");
-  if (units === "metric") {
-    windUnitsElement.innerHTML = "m/s";
-  } else {
-    windUnitsElement.innerHTML = "mph";
-  }
-  getDailyForecast(response.data.coord, units);
+  getDailyForecast(response.data.coord, newUnits);
 }
 
 function search(city, units) {
   let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(displayTemperature);
+
+  axios.get(apiUrl).then((response) => displayTemperature(response, units));
+
+  let windUnitsElement = document.querySelector("#wind-units");
+
+  if (units === "metric") {
+    windUnitsElement.innerHTML = "m/s";
+  } else {
+    windUnitsElement.innerHTML = "mph";
+  }
 }
 
 // Search engine
@@ -176,9 +182,6 @@ function displayCelsiusTemperature(event) {
   celsiusLink.classList.add("active");
   search(cityInputElement, units);
 }
-
-let cityInputElement = "New York";
-let units = "metric";
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
