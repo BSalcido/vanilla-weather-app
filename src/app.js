@@ -134,15 +134,12 @@ function displayTemperature(response) {
   } else {
     windUnitsElement.innerHTML = "mph";
   }
-
   getDailyForecast(response.data.coord, units);
 }
 
 function search(city, units) {
-  let cityName = city;
   let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
-  let unit = units;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${unit}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -157,7 +154,6 @@ function handleSubmit(event, units) {
   celsiusLink.classList.add("active");
 
   search(cityInputElement, units);
-  getDailyForecast(response.data.coord, units);
 }
 
 let form = document.querySelector("#search-form");
@@ -171,7 +167,6 @@ function displayFahrenheitTemperature(event) {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   search(cityInputElement, units);
-  getDailyForecast(response.data.coord, units);
 }
 
 function displayCelsiusTemperature(event) {
@@ -180,7 +175,6 @@ function displayCelsiusTemperature(event) {
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
   search(cityInputElement, units);
-  getDailyForecast(response.data.coord, units);
 }
 
 let cityInputElement = "New York";
