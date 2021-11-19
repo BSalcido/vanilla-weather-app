@@ -36,11 +36,12 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${dateNum} <br> Last updated: ${time}`;
 }
 
-function getDailyForecast(coord) {
+function getDailyForecast(coord, units) {
   let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
   let lon = coord.lon;
   let lat = coord.lat;
-  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let unit = units;
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrlForecast).then(displayWeekForecast);
 }
 
@@ -134,7 +135,7 @@ function displayTemperature(response) {
     windUnitsElement.innerHTML = "mph";
   }
 
-  getDailyForecast(response.data.coord);
+  getDailyForecast(response.data.coord, units);
 }
 
 function search(city, units) {
@@ -156,6 +157,7 @@ function handleSubmit(event, units) {
   celsiusLink.classList.add("active");
 
   search(cityInputElement, units);
+  getDailyForecast(response.data.coord, units);
 }
 
 let form = document.querySelector("#search-form");
@@ -169,6 +171,7 @@ function displayFahrenheitTemperature(event) {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   search(cityInputElement, units);
+  getDailyForecast(response.data.coord, units);
 }
 
 function displayCelsiusTemperature(event) {
@@ -177,6 +180,7 @@ function displayCelsiusTemperature(event) {
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
   search(cityInputElement, units);
+  getDailyForecast(response.data.coord, units);
 }
 
 let cityInputElement = "New York";
