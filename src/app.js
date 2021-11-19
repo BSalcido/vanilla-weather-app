@@ -36,31 +36,54 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${dateNum} <br> Last updated: ${time}`;
 }
 
-function displayWeekForecast() {
+function getDailyForecast(coord) {
+  let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
+  let lon = coord.lon;
+  let lat = coord.lat;
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlForecast).then(displayWeekForecast);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function displayWeekForecast(response) {
   let weekForecastElement = document.querySelector("#forecast-container");
 
   let weekForecastHTML = `<div class="row">`;
 
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
-  days.forEach(function (day) {
-    weekForecastHTML =
-      weekForecastHTML +
-      `
+  let days = response.data.daily;
+
+  days.forEach(function (day, index) {
+    if (index > 0 && index < 6) {
+      let maxTemp = Math.round(day.temp.max);
+      let minTemp = Math.round(day.temp.min);
+      let dailyIcon = day.weather[0].icon;
+      let srcUrl = `http://openweathermap.org/img/wn/${dailyIcon}@2x.png`;
+
+      weekForecastHTML =
+        weekForecastHTML +
+        `
       <div class="col">
-            <div class="dayName">${day}</div>
+            <div class="dayName">${formatDay(day.dt)}</div>
             <img
-              src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png"
+              src="${srcUrl}"
               alt="Forecast icon"
               id="day-forecast-img"
               class="dayForecastImage"
             />
             <div class="forecastDay">
-              <span class="maxForecast">10</span>°/<span class="minForecast"
-                >6</span
+              <span class="maxForecast">${maxTemp}</span>°/<span class="minForecast"
+                >${minTemp}</span
               >°
             </div>
           </div>
         `;
+    }
   });
 
   weekForecastHTML = weekForecastHTML + `</div>`;
@@ -111,7 +134,7 @@ function displayTemperature(response) {
     windUnitsElement.innerHTML = "mph";
   }
 
-  console.log(response.data);
+  getDailyForecast(response.data.coord);
 }
 
 function search(city, units) {
@@ -166,4 +189,3 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 search(cityInputElement, units);
-displayWeekForecast();
