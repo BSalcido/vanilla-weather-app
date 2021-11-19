@@ -103,6 +103,15 @@ function displayTemperature(response) {
   // Gets the date
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(new Date(response.data.dt * 1000));
+
+  let windUnitsElement = document.querySelector("#wind-units");
+  if (units === "metric") {
+    windUnitsElement.innerHTML = "m/s";
+  } else {
+    windUnitsElement.innerHTML = "mph";
+  }
+
+  console.log(response.data);
 }
 
 function search(city, units) {
