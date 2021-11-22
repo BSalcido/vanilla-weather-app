@@ -10,7 +10,8 @@
   border: 1px solid #e3fdfd;
   border-radius: 8px;
   margin: 15px auto;
-  padding: 40px 30px;
+  padding: 20px 30px;
+  overflow: scroll;
 }
 .searchEngine {
   margin: 0 auto 30px;
@@ -44,7 +45,11 @@ button.btn:focus {
   color: #f8ede3;
   background: #00adb5;
 }
-
+.header {
+  width: "100%";
+  display: inline-block;
+  text-overflow: ellipsis;
+}
 .cityName {
   font-size: 75px;
   font-weight: 600;
@@ -60,7 +65,9 @@ button.btn:focus {
 }
 
 .localTime {
-  text-align: end;
+  text-align: center;
+  color: #393e46;
+  font-size: 18px;
 }
 
 .weatherCommentary {

@@ -41,10 +41,10 @@ function formatDate(timestamp) {
 function displayLocalTime(response) {
   let localTimeFormatted = response.data.formatted;
   let localTimeElement = document.querySelector("#local-time");
-  localTimeElement.innerHTML = `Local time at ${cityInputElement} is: </br> ${localTimeFormatted.slice(
+  localTimeElement.innerHTML = `Local time at is: <strong>${localTimeFormatted.slice(
     -8,
     -3
-  )}`;
+  )}</strong>`;
   console.log(response.data.formatted);
 }
 
@@ -225,6 +225,8 @@ function getCoords(position) {
 }
 function retrieveLocalData(event) {
   event.preventDefault();
+  let cityElement = document.querySelector("#city");
+  cityElement.innerHTML = "<i>Getting info...</i>";
   navigator.geolocation.getCurrentPosition(getCoords);
 }
 
