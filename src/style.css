@@ -59,6 +59,10 @@ button.btn:focus {
   margin-bottom: 10px;
 }
 
+.localTime {
+  text-align: end;
+}
+
 .weatherCommentary {
   font-size: 20px;
   margin-top: 0;

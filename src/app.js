@@ -38,6 +38,21 @@ function formatDate(timestamp) {
 
   return `${day}, ${month} ${dateNum} <br> Last updated: ${time}`;
 }
+function displayLocalTime(response) {
+  let localTimeFormatted = response.data.formatted;
+  let localTimeElement = document.querySelector("#local-time");
+  localTimeElement.innerHTML = `Local time at ${cityInputElement} is: </br> ${localTimeFormatted.slice(
+    -8,
+    -3
+  )}`;
+  console.log(response.data.formatted);
+}
+
+function handleError(response) {
+  alert(
+    "Oops! There was an error trying to get the local time, please try again."
+  );
+}
 
 function getDailyForecast(coord, units) {
   let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
@@ -46,6 +61,13 @@ function getDailyForecast(coord, units) {
   let unit = units;
   let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrlForecast).then(displayWeekForecast);
+
+  let apiTimeKey = "P0TE1BWW6NN1";
+  let apiLocalTime = `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiTimeKey}&format=json&by=position&lat=${lat}&lng=${lon}`;
+  setTimeout(function () {
+    axios.get(apiLocalTime).then(displayLocalTime).catch(handleError);
+  }, 100);
+  console.log(apiLocalTime);
 }
 
 function formatDay(timestamp) {
