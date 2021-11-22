@@ -31,6 +31,20 @@ input.btn:focus {
   background: #f8ede3;
   color: #00adb5;
 }
+button.btn {
+  background: #f8ede3;
+  border: #a6e3e9;
+  color: #71c9ce;
+}
+button.btn:hover {
+  background: #08d9d6;
+  border: #cbf1f5;
+}
+button.btn:focus {
+  color: #f8ede3;
+  background: #00adb5;
+}
+
 .cityName {
   font-size: 75px;
   font-weight: 600;
