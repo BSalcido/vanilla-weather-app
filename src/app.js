@@ -63,7 +63,7 @@ function getDailyForecast(coord, units) {
   axios.get(apiUrlForecast).then(displayWeekForecast);
 
   let apiTimeKey = "P0TE1BWW6NN1";
-  let apiLocalTime = `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiTimeKey}&format=json&by=position&lat=${lat}&lng=${lon}`;
+  let apiLocalTime = `https://api.timezonedb.com/v2.1/get-time-zone?key=${apiTimeKey}&format=json&by=position&lat=${lat}&lng=${lon}`;
   setTimeout(function () {
     axios.get(apiLocalTime).then(displayLocalTime).catch(handleError);
   }, 100);
