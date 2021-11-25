@@ -1,9 +1,9 @@
 let cityInputElement = "New York";
 let units = "metric";
+let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
-
   let weekDays = [
     "Sunday",
     "Monday",
@@ -14,7 +14,6 @@ function formatDate(timestamp) {
     "Saturday",
   ];
   let day = weekDays[date.getDay()];
-
   let months = [
     "January",
     "February",
@@ -30,9 +29,7 @@ function formatDate(timestamp) {
     "December",
   ];
   let month = months[date.getMonth()];
-
   let dateNum = date.getDate();
-
   let timeString = date.toTimeString();
   let time = timeString.slice(0, 5);
 
@@ -41,28 +38,28 @@ function formatDate(timestamp) {
 function displayLocalTime(response) {
   let localTimeFormatted = response.data.formatted;
   let localTimeElement = document.querySelector("#local-time");
-  localTimeElement.innerHTML = `Local time at current location is: <strong>${localTimeFormatted.slice(
+  localTimeElement.innerHTML = `Local time: <strong>${localTimeFormatted.slice(
     -8,
     -3
   )}</strong>`;
 }
 
-function handleError(response) {
+function handleError() {
   alert(
     "Oops! There was an error trying to get the local time, please try again."
   );
 }
 
 function getDailyForecast(coord, units) {
-  let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
   let lon = coord.lon;
   let lat = coord.lat;
-  let unit = units;
-  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+
   axios.get(apiUrlForecast).then(displayWeekForecast);
 
   let apiTimeKey = "P0TE1BWW6NN1";
   let apiLocalTime = `https://api.timezonedb.com/v2.1/get-time-zone?key=${apiTimeKey}&format=json&by=position&lat=${lat}&lng=${lon}`;
+
   setTimeout(function () {
     axios.get(apiLocalTime).then(displayLocalTime).catch(handleError);
   }, 100);
@@ -161,7 +158,6 @@ function displayTemperature(response, newUnits) {
 }
 
 function search(city, units) {
-  let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then((response) => displayTemperature(response, units));
@@ -207,8 +203,6 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
-search(cityInputElement, units);
-
 function getCoords(position) {
   // Reset links style
   fahrenheitLink.classList.remove("active");
@@ -219,8 +213,10 @@ function getCoords(position) {
   units = "metric";
   let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+
   axios.get(apiUrl).then((response) => displayTemperature(response, units));
 }
+
 function retrieveLocalData(event) {
   event.preventDefault();
   let cityElement = document.querySelector("#city");
@@ -231,3 +227,5 @@ function retrieveLocalData(event) {
 
 let searchCurrent = document.querySelector("#current-button");
 searchCurrent.addEventListener("click", retrieveLocalData);
+
+search(cityInputElement, units);
