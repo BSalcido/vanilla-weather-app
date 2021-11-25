@@ -41,11 +41,10 @@ function formatDate(timestamp) {
 function displayLocalTime(response) {
   let localTimeFormatted = response.data.formatted;
   let localTimeElement = document.querySelector("#local-time");
-  localTimeElement.innerHTML = `Local time at is: <strong>${localTimeFormatted.slice(
+  localTimeElement.innerHTML = `Local time at current location is: <strong>${localTimeFormatted.slice(
     -8,
     -3
   )}</strong>`;
-  console.log(response.data.formatted);
 }
 
 function handleError(response) {
@@ -67,7 +66,6 @@ function getDailyForecast(coord, units) {
   setTimeout(function () {
     axios.get(apiLocalTime).then(displayLocalTime).catch(handleError);
   }, 100);
-  console.log(apiLocalTime);
 }
 
 function formatDay(timestamp) {
@@ -228,6 +226,7 @@ function retrieveLocalData(event) {
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = "<i>Getting info...</i>";
   navigator.geolocation.getCurrentPosition(getCoords);
+  document.querySelector("#search-input").value = "";
 }
 
 let searchCurrent = document.querySelector("#current-button");

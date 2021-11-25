@@ -30,10 +30,12 @@
                 class="form-control search-input"
                 id="search-input"
                 autocomplete="off"
+                onfocus="this.value=''"
               />
             </div>
             <div class="col-auto">
-              <input type="submit" class="btn btn-primary" value:"Search">
+              <input type="submit" class="btn btn-primary" id="city-input"
+              value:"Search">
             </div>
             <div class="col-auto">
               <button
