@@ -1,6 +1,6 @@
 let cityInputElement = "New York";
 let units = "metric";
-let apiKey = "a681fa21eaf47e3cd663d5b2d4a9cb14";
+let apiKey = "2feb2c01d0877b35434ff4165f9feb51";
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
